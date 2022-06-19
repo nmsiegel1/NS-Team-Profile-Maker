@@ -66,6 +66,7 @@ ${employeeArray
 
 module.exports = employeeData => {
     const {manager, engineer, intern} = employeeData;
+    console.log("manager", manager)
     return`
     <!DOCTYPE html>
     <html lang="en">
@@ -97,7 +98,7 @@ module.exports = employeeData => {
         <div class="container">
           <div class="row">
             <div class="team col-12 d-flex justify-content-center">
-            ${generateCards(manager, engineer, intern)}
+            ${generateCards(employeeData)}
             </div>
           </div>
         </div>

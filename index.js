@@ -1,13 +1,13 @@
 const Employee = require('../team-profile-maker/lib/Employee');
-const Manger = require('../team-profile-maker/lib/Manager.js');
+const Manager = require('../team-profile-maker/lib/Manager.js');
 const Intern = require('../team-profile-maker/lib/Intern.js');
 const Engineer = require('../team-profile-maker/lib/Engineer.js')
 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const path = require('path');
+// const path = require('path');
 
-const generateHTML = require('./src/page-template');
+const generatePage = require('../team-profile-maker/src/page-template');
 // const { resolvePtr } = require('dns');
 
 const managerQuestions = [
@@ -184,27 +184,28 @@ const internQuestions = [
 // if conditional 
 // switch method to get 
 
-function Team() {
+function getEmployeeInfo() {
 
-    this.team = [];
+    employeeData = [];
     this.manager;
     this.engineer;
     this.intern;
 
-
+}
     // const employeeArray = [];
 
-    Team.prototype.getManager = function () {
+    getEmployeeInfo.prototype.getManager = function () {
         console.log("Please build your team");
         inquirer.prompt(managerQuestions)
         .then(({name, id, email, office}) => {
             this.manager = new Manager(name, id, email, office);
-            this.team.push(this.manager);
+            employeeData.push(this.manager);
+            this.nextTeamMember()
         })
-        .then(nextTeamMember)
+
     }
 
-    Team.prototype.nextTeamMember = function () {
+    getEmployeeInfo.prototype.nextTeamMember = function () {
         inquirer.prompt(
             {
                 type: 'list',
@@ -213,49 +214,55 @@ function Team() {
                 choices: ["engineer", "intern", "I dont want to add any more team members."]
             }).then(({next}) => {
                 if (next === 'intern') {
-                    getIntern();
+                    this.getIntern();
                 } else if (next === 'engineer') {
-                    getEngineer();
+                    this.getEngineer();
                 } else {
-                    console.log(employeeArray)
-                    // generateHTML(this.team)
+                    console.log(employeeData)
+                    writeProfile(employeeData)
                 }
             })
 
     }
 
-    Team.prototype.getEngineer = function () {
+    getEmployeeInfo.prototype.getEngineer = function () {
         inquirer.prompt(engineerQuestions)
         .then(({name, id, email, github}) => {
             this.engineer = new Engineer(name, id, email, github);
-            this.team.push(this.engineer);
+            employeeData.push(this.engineer);
+            this.nextTeamMember();
         })
-        .then(nextTeamMember)
+
     }
 
-    Team.prototype.getIntern = function () {
+    getEmployeeInfo.prototype.getIntern = function () {
         inquirer.prompt(internQuestions)
         .then(({name, id, email, school}) => {
             this.intern = new Intern(name, id, email, school);
-            this.team.push(this.intern);
+            employeeData.push(this.intern);
+            this.nextTeamMember();
         })
-        .then(nextTeamMember)
+
     }
+
+
+
+function writeProfile() {
+    const pageHTML = generatePage(employeeData)
+    fs.writeFile("./dist/index.html", pageHTML, err => {
+        if (err) throw err;
+        console.log("Portfolio complete! Check out index.html to see the output!");
+    });
+
+    fs.copyFile('./src/style.css', './dist/style.css', err => {
+        if (err) {
+            console.log(err);
+                return;
+            }
+        console.log("style sheet copied successfully");
+    });
 }
 
-// function generateHTML() {
-//     // fs.writeFile("./dist/index.html", pageHTML, err => {
-//     //     if (err) throw err;
-//     //     console.log("Portfolio complete! Check out index.html to see the output!");
-    
-//     //     fs.copyFile('./src/style.css', './dist/style.css', err => {
-//     //         if (err) {
-//     //             console.log(err);
-//     //             return;
-//     //         }
-//     //         console.log("style sheet copied successfully");
-//     //     });
 
-// }
 
-new Team().getManager();
+new getEmployeeInfo().getManager();
