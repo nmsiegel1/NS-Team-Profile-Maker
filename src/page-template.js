@@ -1,59 +1,78 @@
+const Employee = require("../lib/Employee");
+const Manager = require("../lib/Manager.js");
+const Intern = require("../lib/Intern.js");
+const Engineer = require("../lib/Engineer.js")
 
-const generateCards = employeeArray => {
+const managerArray = [];
+const engineerArray = [];
+const internArray = [];
+
+function generateCards(employeeData) {
+
     return `
-    <div class="card employee-card">
-  <div class="card-header">
-${employeeArray
-    .filter(({manager}) => manager)
+
+${employeeData
+    .filter(({office}) => office)
     .map(({name, id, email, office}) => {
     return `
-
-    <h2 class="card-title>">${employee.getName()}</h2>
+    <div class="row">
+            <div class="team col-12 d-flex justify-content-center">
+    <div class="card employee-card">
+    <div class="card-header">
+    <h2 class="card-title>">${name}</h2>
     <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
   </div>
   <div class="card-body">
     <ul class="list-body">
-      <li class="list-group-item">Id: ${employee.getEmail()}</li>
+      <li class="list-group-item">Id: ${email}</li>
       <li class="list-group-item">
-        Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a>
+        Email: <a href="mailto:${email}">${email}</a>
       </li>
-      <li class="list-group-item">Office Number: ${manager.getOffice()}</li>
+      <li class="list-group-item">Office Number: ${office}</li>
 `;
 })
 .join('')}
 
-${employeeArray
-    .filter(({engineer}) => engineer)
-    .map(({name, id, email, office}) => {
+${employeeData
+    .filter(({github}) => github)
+    .map(({name, id, email, github}) => {
         return `
-    <h2 class="card-title>">${employee.getName()}</h2>
+        <div class="row">
+            <div class="team col-12 d-flex justify-content-center">
+        <div class="card employee-card">
+        <div class="card-header">
+    <h2 class="card-title>">${name}</h2>
     <h3 class="card-title"><i class="fas fa-solid fa-glasses"></i>Engineer</h3>
   </div>
   <div class="card-body">
     <ul class="list-body">
-      <li class="list-group-item">Id: ${employee.getId()}</li>
+      <li class="list-group-item">Id: ${id}</li>
       <li class="list-group-item">
-        Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a>
+        Email: <a href="mailto:${email}">${email}</a>
       </li>
-      <li class="list-group-item">GitHub: ${engineer.getGithub()}</li>
+      <li class="list-group-item">GitHub: ${github}</li>
       `;
     })
     .join('')}
 
-${employeeArray
-            .filter(({intern}) => intern)
-            .map(({name, id, email, office}) => {
+${employeeData
+            .filter(({school}) => school)
+            .map(({name, id, email, school}) => {
         return`
-    <h2 class="card-title>">${employee.getName()}</h2>
+        <div class="row">
+            <div class="team col-12 d-flex justify-content-center">
+        <div class="card employee-card">
+        <div class="card-header">
+    <h2 class="card-title>">${name}</h2>
     <h3 class="card-title"><i class="fas fa-solid fa-graduation-cap"></i>Intern</h3>
   </div>
   <div class="card-body">
     <ul class="list-body">
-      <li class="list-group-item">Id: ${employee.getId()}</li>
+      <li class="list-group-item">Id: ${id}</li>
       <li class="list-group-item">
-        Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a>
+        Email: <a href="mailto:${email}">${email}</a>
       </li>
-      <li class="list-group-item">School: ${intern.getSchool()}</li>
+      <li class="list-group-item">School: ${school}</li>
       `;
     })
     .join('')}
@@ -66,7 +85,7 @@ ${employeeArray
 
 module.exports = employeeData => {
     const {manager, engineer, intern} = employeeData;
-    console.log("manager", manager)
+    console.log("employeeData", employeeData)
     return`
     <!DOCTYPE html>
     <html lang="en">
@@ -96,8 +115,6 @@ module.exports = employeeData => {
           </div>
         </div>
         <div class="container">
-          <div class="row">
-            <div class="team col-12 d-flex justify-content-center">
             ${generateCards(employeeData)}
             </div>
           </div>

@@ -259,7 +259,7 @@ function writeProfile() {
             console.log(err);
                 return;
             }
-        console.log("style sheet copied successfully");
+        console.log("Style sheet copied successfully!");
     });
 }
 
