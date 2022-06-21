@@ -1,0 +1,21 @@
+body {
+    background-color: lightskyblue;
+}
+
+.card-header {
+    background-color: rgb(77, 97, 250);
+    color: white;
+}
+
+h1 {
+    color: white;
+    padding: 10px;
+}
+
+.employee-card {
+    margin-bottom: 20px;
+    border-color:rgb(35, 49, 159);
+    background-color: white;
+    justify-content: space;
+
+}

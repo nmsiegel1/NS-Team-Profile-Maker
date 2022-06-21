@@ -1,26 +1,32 @@
-const Employee = require('../lib/Employee');
+const Employee = require("../lib/Employee");
 
 test('initiate an employee', () => {
     const employee = new Employee();
+
     expect(typeof(employee)).toBe("object");
+});
+
+test('tests employee name', () => {
+    const employee = new Employee("Wesley");
+
+    expect(employee.name).toBe(name);
+});
+
+test('tests employee id', () => {
+    const employee = new Employee("Wesley");
+
+    expect(employee.id).toBe(id);
 
 });
 
-test('tests player name', () => {
-    const employee = new Employee("Dave");
+test('tests employee email', () => {
+    const employee = new Employee("Wesley");
 
-    expect(employee.name).toBe(name)
-})
+    expect(employe.email).toBe(email);
+});
 
-// test('tests employee id'), () => {
-//     const employee = new Employee("Dave");
+test('tests employee role', () => {
+    const employee = new Employee("Wesley");
 
-//     expect(employee.id).toBe(id)
-
-// }
-
-// test('tests employee email'), () => {
-//     const employee = new Employee("Dave");
-
-//     expect(employe.email).toBe(email);
-// }
+    expect(employee.role).toBe(role);
+});
