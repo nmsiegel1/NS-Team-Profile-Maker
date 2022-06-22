@@ -5,7 +5,8 @@ ${employeeData
   .filter(({office}) => office)
   .map(({name, id, email, office}) => {
     return `
-    <div class="card employee-card">
+    <div class="team col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+    <div class="card employee-card mx-2 w-100">
       <div class="card-header">
         <h2 class="card-title>">${name}</h2>
         <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i> Manager</h3>
@@ -18,15 +19,19 @@ ${employeeData
           <li class="list-group-item">Office Number: ${office}</li>
           </ul>
         </div>
+        </div>
+        </div>
 `;
 })
+.join('')
 }
 
 ${employeeData
     .filter(({github}) => github)
     .map(({name, id, email, github}) => {
         return `
-    <div class="card employee-card">
+    <div class="team col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+    <div class="card employee-card mx-2 w-100">
       <div class="card-header">
       <h2 class="card-title>">${name}</h2>
       <h3 class="card-title"><i class="fas fa-solid fa-glasses"></i> Engineer</h3>
@@ -39,17 +44,21 @@ ${employeeData
         </li>
         <li class="list-group-item">GitHub: ${github}</li>
         </ul>
+        </div>
+      </div>
       </div>
       `;
       })
+      .join('')
     }
 
 ${employeeData
   .filter(({school}) => school)
   .map(({name, id, email, school}) => {
     return`
- 
-    <div class="card employee-card">
+
+    <div class="team col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+    <div class="card employee-card mx-2 w-100">
       <div class="card-header">
         <h2 class="card-title>">${name}</h2>
         <h3 class="card-title"><i class="fas fa-solid fa-graduation-cap"></i> Intern</h3>
@@ -62,17 +71,19 @@ ${employeeData
       </li>
       <li class="list-group-item">School: ${school}</li>
       </ul>
+      </div>
   </div>
-      `;
-    })
-   }
+  </div>
+  `;
+})
+.join('')
+}
 `;
 };
 
 
 module.exports = employeeData => {
     const {manager, engineer, intern} = employeeData;
-    console.log("employeeData", employeeData)
     return`
 <!DOCTYPE html>
 <html lang="en">
@@ -103,9 +114,7 @@ module.exports = employeeData => {
   </div>
   <div class="container">
   <div class="row">
-  <div class="team col-12 d-flex justify-content-center">
     ${generateCards(employeeData)}
-    </div>
     </div>
   </div>
 </body>

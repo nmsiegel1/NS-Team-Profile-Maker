@@ -19,3 +19,7 @@ h1 {
     justify-content: space;
 
 }
+
+.hide {
+    display: none;
+}

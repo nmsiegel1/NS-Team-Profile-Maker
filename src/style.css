@@ -8,7 +8,7 @@ body {
 }
 
 h1 {
-    color: white;
+    color: aliceblue;
     padding: 10px;
 }
 
@@ -18,4 +18,8 @@ h1 {
     background-color: white;
     justify-content: space;
 
+}
+
+.hide {
+    display: none;
 }
