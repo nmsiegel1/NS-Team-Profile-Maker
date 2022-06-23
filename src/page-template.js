@@ -1,9 +1,10 @@
-
+// function to generate the cards using the employeeData array generated from inquirer
 function generateCards(employeeData) {
-    return `
+  // Filtering the array for manager(by searching for office) and then inputting in the appropriate HTML template
+  return `
 ${employeeData
-  .filter(({office}) => office)
-  .map(({name, id, email, office}) => {
+  .filter(({ office }) => office)
+  .map(({ name, id, email, office }) => {
     return `
     <div class="team col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
     <div class="card employee-card mx-2 w-100">
@@ -22,14 +23,14 @@ ${employeeData
         </div>
         </div>
 `;
-})
-.join('')
-}
+  })
+  .join("")}
 
 ${employeeData
-    .filter(({github}) => github)
-    .map(({name, id, email, github}) => {
-        return `
+  // Filtering the array for engineer(by searching for github) and then inputting in the appropriate HTML template
+  .filter(({ github }) => github)
+  .map(({ name, id, email, github }) => {
+    return `
     <div class="team col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
     <div class="card employee-card mx-2 w-100">
       <div class="card-header">
@@ -42,20 +43,20 @@ ${employeeData
         <li class="list-group-item">
         Email: <a href="mailto:${email}">${email}</a>
         </li>
-        <li class="list-group-item">GitHub: ${github}</li>
+        <li class="list-group-item">GitHub: <a href=https://github.com/${github}/>${github}</a></li>
         </ul>
         </div>
       </div>
       </div>
       `;
-      })
-      .join('')
-    }
+  })
+  .join("")}
 
 ${employeeData
-  .filter(({school}) => school)
-  .map(({name, id, email, school}) => {
-    return`
+  // Filtering the array for intern(by searching for school) and then inputting in the appropriate HTML template
+  .filter(({ school }) => school)
+  .map(({ name, id, email, school }) => {
+    return `
 
     <div class="team col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
     <div class="card employee-card mx-2 w-100">
@@ -75,16 +76,15 @@ ${employeeData
   </div>
   </div>
   `;
-})
-.join('')
-}
+  })
+  .join("")}
 `;
-};
+}
 
-
-module.exports = employeeData => {
-    const {manager, engineer, intern} = employeeData;
-    return`
+// the main page HTML template which calls the generateCards function
+module.exports = (employeeData) => {
+  const { manager, engineer, intern } = employeeData;
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,4 +120,4 @@ module.exports = employeeData => {
 </body>
 </html>
 `;
-}
+};

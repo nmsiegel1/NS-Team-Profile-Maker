@@ -1,32 +1,32 @@
-const Intern = require("../lib/Intern")
+const Intern = require("../lib/Intern");
 
-test('initiate an intern', () => {
-    const intern = new Intern();
+// tests for Intern class
+test("initiate an intern", () => {
+  const intern = new Intern();
 
-    expect(typeof(intern)).toBe("object");
+  expect(typeof intern).toBe("object");
 });
 
-test('tests intern name', () => {
-    const intern = new Intern("Wesley");
+test("tests intern name", () => {
+  const intern = new Intern("Wesley");
 
-    expect(intern.name).toBe(name);
+  expect(intern.getName()).toHaveProperty("name");
 });
 
-test('tests intern id', () => {
-    const intern = new Intern("Wesley");
+test("tests intern id", () => {
+  const intern = new Intern("Wesley");
 
-    expect(intern.id).toBe(id);
-
+  expect(intern.getId()).toHaveProperty("id");
 });
 
-test('tests intern email', () => {
-    const intern = new Intern("Wesley");
+test("tests intern email", () => {
+  const intern = new Intern("Wesley");
 
-    expect(employe.email).toBe(email);
+  expect(intern.getEmail()).toHaveProperty("email");
 });
 
-test('tests intern role', () => {
-    const intern = new Intern("Wesley");
+test("tests intern role", () => {
+  const intern = new Intern("Wesley");
 
-    expect(intern.role).toBe(role);
+  expect(intern.getRole()).toEqual(expect.any(String));
 });

@@ -1,32 +1,32 @@
 const Employee = require("../lib/Employee");
 
-test('initiate an employee', () => {
-    const employee = new Employee();
+// tests for Employee class
+test("initiate an employee", () => {
+  const employee = new Employee();
 
-    expect(typeof(employee)).toBe("object");
+  expect(typeof employee).toBe("object");
 });
 
-test('tests employee name', () => {
-    const employee = new Employee("Wesley");
+test("tests employee name", () => {
+  const employee = new Employee("Wesley");
 
-    expect(employee.name).toBe(name);
+  expect(employee.getName()).toHaveProperty("name");
 });
 
-test('tests employee id', () => {
-    const employee = new Employee("Wesley");
+test("tests employee id", () => {
+  const employee = new Employee("Wesley");
 
-    expect(employee.id).toBe(id);
-
+  expect(employee.getId()).toHaveProperty("id");
 });
 
-test('tests employee email', () => {
-    const employee = new Employee("Wesley");
+test("tests employee email", () => {
+  const employee = new Employee("Wesley");
 
-    expect(employe.email).toBe(email);
+  expect(employee.getEmail()).toHaveProperty("email");
 });
 
-test('tests employee role', () => {
-    const employee = new Employee("Wesley");
+test("tests employee role", () => {
+  const employee = new Employee("Wesley");
 
-    expect(employee.role).toBe(role);
+  expect(employee.getRole()).toHaveProperty("role");
 });
